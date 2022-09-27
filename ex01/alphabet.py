@@ -1,9 +1,9 @@
 import random
-import datetime
-import datetime
+import time
+
 
 num_of_alphabet = 26  
-num_of_all_chars = 10 
+num_of_all_chars = random.randint(10,15) 
 num_of_abs_chars = random.randint(1,10)
 num_of_trials = 1000
 
@@ -48,12 +48,12 @@ if __name__ == "__main__":
     alphabet = [chr(i+65) for i in range(num_of_alphabet)]
     
     for _ in range(num_of_trials):
-        st = datetime.datetime.now()
+        st = time.time()
         abs_chars = shutudai(alphabet)  
         ret = kaito(abs_chars)
         if ret:
-            ed =datetime.datetime.now()
-            print(f"回答時間：{(ed-st).seconds}秒")
+            ed =time.time()
+            print(f"所要時間:{(ed-st):.2f}秒")
             break
         else:
             print("-"*20)
