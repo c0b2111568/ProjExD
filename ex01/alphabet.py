@@ -5,7 +5,7 @@ import time
 num_of_alphabet = 26  
 num_of_all_chars = random.randint(10,15) 
 num_of_abs_chars = random.randint(1,10)
-num_of_trials = 1000
+num_of_trials = 100
 
 def shutudai(alphabet):
     all_chars = random.sample(alphabet, num_of_all_chars)
