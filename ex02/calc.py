@@ -8,7 +8,7 @@ root.geometry("300x500")
 def button_click(event):
     btn = event.widget
     txt = btn["text"]
-    tkm.showwarning(txt,f"{txt}ボタンがクリックされました")
+    tkm.showwarning(txt,f"{txt}ボタン押されました")
 
 Button0=tk.Button(root,text="0",width=4,height=2,font=("Times New Roman",30))
 Button1=tk.Button(root,text="1",width=4,height=2,font=("Times New Roman",30))
