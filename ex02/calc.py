@@ -12,6 +12,9 @@ def click_equal(event):
     entry.delete(0,tk.END)
     entry.insert(tk.END, res) 
 
+def click_AC(event):
+    entry.delete(0,tk.END)
+
 
 
 root = tk.Tk() 
@@ -46,4 +49,9 @@ for j in Calcula:
 botton = tk.Button(root, text = f"=",font=("",30),width=4,height=2,bg="#FFD700")
 botton.bind("<1>", click_equal)
 botton.grid(row=r_num, column=c_num+1)
+
+btn = tk.Button(root, text = f"AC",font=("",30),width=4,height=2,bg="#FFD700")
+btn.bind("<1>", click_AC)
+btn.grid(row=5, column=0)
+
 root.mainloop()
