@@ -6,6 +6,13 @@ def click_number(event):
     num = btn["text"]
     entry.insert(tk.END, num) 
 
+def click_equal(event):
+    eqn = entry.get()
+    res = eval(eqn)
+    entry.delete(0,tk.END)
+    entry.insert(tk.END, res) 
+
+
 
 root = tk.Tk() 
 root.geometry("300x500")
@@ -24,5 +31,7 @@ for i, num in enumerate(numbers+pulus, 1):
     if i%3 == 0:
         r += 1
         c = 0
-
+botton = tk.Button(root, text = f"=",font=("",30),width=4,height=2)
+botton.bind("<1>", click_equal)
+botton.grid(row=r, column=c)
 root.mainloop()
