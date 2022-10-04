@@ -1,9 +1,10 @@
 import tkinter as tk
 import tkinter.messagebox as tkm
 
-#def click_number(event): 
- #   btn = event.widget
-  ## tkm.showinfo(f"{num}", f"{num}のボタンが押されました")
+def click_number(event):
+    btn = event.widget
+    num = btn["text"]
+    entry.insert(tk.END, num) 
 
 
 root = tk.Tk() 
@@ -13,7 +14,9 @@ entry = tk.Entry(root, width=10, font=(", 40"), justify="right")
 entry.grid(row=0, column=0, columnspan=3)
 
 r, c = 1, 0 
-for i, num in enumerate(range(9,-1, -1), 1):
+numbers = list(range(9, -1, -1)) 
+pulus = ["+"] 
+for i, num in enumerate(numbers+pulus, 1):
     botton = tk.Button(root, text=f"{num}", font=("", 30), width=4, height=2)
     botton.bind("<1>", click_number)
     botton.grid(row=r, column=c)
