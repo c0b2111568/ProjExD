@@ -1,20 +1,22 @@
 import tkinter as tk
 import tkinter.messagebox as tkm
 
-def click_number(event):
-    btn = event.widget
-    num = int(btn["text"])
-    tkm.showinfo(f"{num}", f"{num}のボタンが押されました")
+#def click_number(event): 
+ #   btn = event.widget
+  ## tkm.showinfo(f"{num}", f"{num}のボタンが押されました")
 
 
-root = tk.Tk() # 練習1
+root = tk.Tk() 
 root.geometry("300x500")
 
-r, c = 0, 0
+entry = tk.Entry(root, width=10, font=(", 40"), justify="right") 
+entry.grid(row=0, column=0, columnspan=3)
+
+r, c = 1, 0 
 for i, num in enumerate(range(9,-1, -1), 1):
-    button = tk.Button(root, text=f"{num}", font=("", 30), width=4, height=2)
-    button.bind("<1>", click_number)
-    button.grid(row=r, column=c)
+    botton = tk.Button(root, text=f"{num}", font=("", 30), width=4, height=2)
+    botton.bind("<1>", click_number)
+    botton.grid(row=r, column=c)
     c += 1
     if i%3 == 0:
         r += 1
