@@ -1,3 +1,4 @@
+
 import tkinter as tk
 import tkinter.messagebox as tkm
 
@@ -15,7 +16,9 @@ def click_equal(event):
 def click_AC(event):
     entry.delete(0,tk.END)
 
-
+#def click_C(event):
+#    entry.delete(tk.END,event)
+    
 
 root = tk.Tk() 
 root.geometry("400x700")
@@ -46,12 +49,16 @@ for j in Calcula:
         r_Ca=4
         c_Ca=2
 
-botton = tk.Button(root, text = f"=",font=("",30),width=4,height=2,bg="#FFD700")
-botton.bind("<1>", click_equal)
-botton.grid(row=r_num, column=c_num+1)
+btn_eq = tk.Button(root, text = f"=",font=("",30),width=4,height=2,bg="#FFD700")
+btn_eq.bind("<1>", click_equal)
+btn_eq.grid(row=r_num, column=c_num+1)
 
-btn = tk.Button(root, text = f"AC",font=("",30),width=4,height=2,bg="#FFD700")
-btn.bind("<1>", click_AC)
-btn.grid(row=5, column=0)
+btn_AC = tk.Button(root, text = f"AC",font=("",30),width=4,height=2,bg="#FFD700")
+btn_AC.bind("<1>", click_AC)
+btn_AC.grid(row=5, column=0)
+
+#btn_C = tk.Button(root, text = f"C",font=("",30),width=4,height=2,bg="#FFD700")
+#btn_C.bind("<1>", click_C)
+#btn_C.grid(row=5, column=1)
 
 root.mainloop()
