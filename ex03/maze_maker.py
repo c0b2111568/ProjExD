@@ -31,5 +31,5 @@ def show_maze(canvas, maze_lst):
             canvas.create_rectangle(x*100, y*100, x*100+100, y*100+100, 
                                     fill=color[maze_lst[y][x]])
     canvas.create_rectangle(100, 100, 200, 200, fill="yellow")
-                                    
+    canvas.create_rectangle(1300, 700, 1400, 800, fill="red")                                
    
