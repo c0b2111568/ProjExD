@@ -1,9 +1,9 @@
-from inspect import BoundArguments
 import pygame as pg
 import sys
 from random import randint
 import pygame
 import time
+from pygame.locals import *
 
 def alarm():
     pygame.mixer.init(frequency = 44100)    # 初期設定
@@ -72,6 +72,14 @@ def main():
         if key_states[pg.K_DOWN]:  tori_rct.centery += 1
         if key_states[pg.K_LEFT]:  tori_rct.centerx -= 1
         if key_states[pg.K_RIGHT]: tori_rct.centerx += 1
+
+        for event in pygame.event.get():
+            # マウスポインタで画像も移動
+            if event.type == MOUSEMOTION:
+                tori_rct.centerx, tori_rct.centery = event.pos
+                tori_rct.centerx -= int(tori_rct.get_width() / 2)
+                tori_rct.centery -= int(tori_rct.get_height() / 2)
+
         yoko, tate = check_bound(tori_rct, scrn_rct)
         if yoko == -1:
             if key_states[pg.K_LEFT]: 
