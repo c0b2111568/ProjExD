@@ -31,6 +31,7 @@ def check_bound(obj_rct, scr_rct):
 
 def main():
     # 練習1
+    pygame.mouse.set_visible(False)
     pg.display.set_caption("逃げろ！こうかとん")
     scrn_sfc = pg.display.set_mode((1600, 900))
     scrn_rct = scrn_sfc.get_rect()
@@ -41,7 +42,9 @@ def main():
     tori_sfc = pg.image.load("fig/6.png")
     tori_sfc = pg.transform.rotozoom(tori_sfc, 0, 2.0)
     tori_rct = tori_sfc.get_rect()
-    tori_rct.center = 900, 400
+    tori_rct.centerx = 900
+    tori_rct.centery = 400
+    pygame.mouse.set_visible(False)
 
     # 練習5
     bomb_sfc = pg.Surface((20, 20)) # 空のSurface
@@ -59,6 +62,7 @@ def main():
     pygame.mixer.music.load("MP3/BGM.mp3")     # 音楽ファイルの読み込み
     pygame.mixer.music.play(1) 
     while True:
+
         scrn_sfc.blit(bg_sfc, bg_rct) # 練習2
 
         
@@ -67,18 +71,13 @@ def main():
                 pygame.mixer.music.stop()
                 return
 
+
         key_states = pg.key.get_pressed()
         if key_states[pg.K_UP]:    tori_rct.centery -= 1
         if key_states[pg.K_DOWN]:  tori_rct.centery += 1
         if key_states[pg.K_LEFT]:  tori_rct.centerx -= 1
         if key_states[pg.K_RIGHT]: tori_rct.centerx += 1
 
-        for event in pygame.event.get():
-            # マウスポインタで画像も移動
-            if event.type == MOUSEMOTION:
-                tori_rct.centerx, tori_rct.centery = event.pos
-                tori_rct.centerx -= int(tori_rct.get_width() / 2)
-                tori_rct.centery -= int(tori_rct.get_height() / 2)
 
         yoko, tate = check_bound(tori_rct, scrn_rct)
         if yoko == -1:
