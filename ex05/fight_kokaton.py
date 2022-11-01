@@ -137,7 +137,7 @@ def main():
         kkt.update(scr)
 
         bkd.update(scr)
-        
+
         s = pg.time.get_ticks()
         time = Text(80, str(s/1000), "Black", (50, 50))
         time.blit(scr)
