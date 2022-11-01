@@ -4,6 +4,7 @@ from random import randint
 import pygame
 import time
 from pygame.locals import *
+import sys
 
 class Screen:
     def __init__(self, title, wh, bgimg):
@@ -15,6 +16,16 @@ class Screen:
         
     def blit(self):
         self.sfc.blit(self.bgi_sfc, self.bgi_rct)
+
+
+class Text:
+    def __init__(self, size, txt, color, xy):
+        self.font = pg.font.Font(None, size)
+        self.txt = self.font.render(txt, True, color)
+        self.x, self.y = xy
+        
+    def blit(self, scr:Screen):
+        scr.sfc.blit(self.txt, (self.x, self.y))
 
 
 class Bird:
@@ -64,7 +75,11 @@ class Bomb:
         yoko, tate = check_bound(self.rct, scr.rct)
         self.vx *= yoko
         self.vy *= tate
+        if yoko == -1 or tate ==-1: 
+            self.vx *=1.2
+            self.vy *=1.2
         self.blit(scr) # =scr.sfc.blit(self.sfc, self.rct)
+
 
 class Music:
     def __init__(self,BGM):
@@ -85,7 +100,6 @@ class Music:
         return 0
 
 
-
 def check_bound(obj_rct, scr_rct):
     """
     obj_rct：こうかとんrct，または，爆弾rct
@@ -101,19 +115,18 @@ def check_bound(obj_rct, scr_rct):
 
 
 def main():
-    # 練習1
+    pygame.mouse.set_visible(False) #画面にマウスポインタを表示させなくする
+
     scr = Screen("逃げろ！こうかとん", (1600, 900), "fig/pg_bg.jpg")
 
-    # 練習3
     kkt = Bird("fig/6.png", 2.0, (900, 400))
 
-    # 練習5
     bkd = Bomb((255, 0, 0), 10, (+1, +1), scr)
 
     clock = pg.time.Clock() # 練習1
 
     Music("MP3/BGM.mp3")
-    
+
     while True:
         scr.blit() # 練習2
         
@@ -121,18 +134,19 @@ def main():
             if event.type == pg.QUIT:
                 return
 
-        # 練習4
         kkt.update(scr)
 
-        # 練習7
         bkd.update(scr)
+        
+        s = pg.time.get_ticks()
+        time = Text(80, str(s/1000), "Black", (50, 50))
+        time.blit(scr)
 
-        # 練習8
         if kkt.rct.colliderect(bkd.rct): # こうかとんrctが爆弾rctと重なったら
             Music.se("MP3/bomb.mp3")
             return
 
-        pg.display.update() #練習2
+        pg.display.update() 
         clock.tick(1000)
 
 
